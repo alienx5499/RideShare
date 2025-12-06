@@ -148,43 +148,46 @@ Every star helps us build a more robust and scalable ride-sharing platform.
 ## 📂 **Project Structure**
 
 ```
-rideshare-backend/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── org/example/rideshare/
-│   │   │       ├── config/              # Security and JWT configuration
-│   │   │       │   ├── SecurityConfig.java
-│   │   │       │   └── JwtAuthenticationFilter.java
-│   │   │       ├── controller/          # REST controllers
-│   │   │       │   ├── AuthController.java
-│   │   │       │   └── RideController.java
-│   │   │       ├── dto/                 # Data Transfer Objects
-│   │   │       │   ├── AuthResponse.java
-│   │   │       │   ├── CreateRideRequest.java
-│   │   │       │   ├── LoginRequest.java
-│   │   │       │   ├── RegisterRequest.java
-│   │   │       │   └── RideResponse.java
-│   │   │       ├── exception/          # Custom exceptions
-│   │   │       │   ├── BadRequestException.java
-│   │   │       │   ├── GlobalExceptionHandler.java
-│   │   │       │   └── NotFoundException.java
-│   │   │       ├── model/              # Entity models
-│   │   │       │   ├── Ride.java
-│   │   │       │   └── User.java
-│   │   │       ├── repository/         # Data access layer
-│   │   │       │   ├── RideRepository.java
-│   │   │       │   └── UserRepository.java
-│   │   │       ├── service/           # Business logic
-│   │   │       │   ├── AuthService.java
-│   │   │       │   └── RideService.java
-│   │   │       ├── util/              # Utilities
-│   │   │       │   └── JwtUtil.java
-│   │   │       └── RideshareApplication.java
-│   │   └── resources/
-│   │       └── application.properties
-│   └── test/                           # Test files
-└── pom.xml                              # Maven dependencies
+RideShare/
+├── rideshare-backend/          # Spring Boot backend application
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── org/example/rideshare/
+│   │   │   │       ├── config/              # Security and JWT configuration
+│   │   │   │       │   ├── SecurityConfig.java
+│   │   │   │       │   └── JwtAuthenticationFilter.java
+│   │   │   │       ├── controller/          # REST controllers
+│   │   │   │       │   ├── AuthController.java
+│   │   │   │       │   └── RideController.java
+│   │   │   │       ├── dto/                 # Data Transfer Objects
+│   │   │   │       │   ├── AuthResponse.java
+│   │   │   │       │   ├── CreateRideRequest.java
+│   │   │   │       │   ├── LoginRequest.java
+│   │   │   │       │   ├── RegisterRequest.java
+│   │   │   │       │   └── RideResponse.java
+│   │   │   │       ├── exception/          # Custom exceptions
+│   │   │   │       │   ├── BadRequestException.java
+│   │   │   │       │   ├── GlobalExceptionHandler.java
+│   │   │   │       │   └── NotFoundException.java
+│   │   │   │       ├── model/              # Entity models
+│   │   │   │       │   ├── Ride.java
+│   │   │   │       │   └── User.java
+│   │   │   │       ├── repository/         # Data access layer
+│   │   │   │       │   ├── RideRepository.java
+│   │   │   │       │   └── UserRepository.java
+│   │   │   │       ├── service/           # Business logic
+│   │   │   │       │   ├── AuthService.java
+│   │   │   │       │   └── RideService.java
+│   │   │   │       ├── util/              # Utilities
+│   │   │   │       │   └── JwtUtil.java
+│   │   │   │       └── RideshareApplication.java
+│   │   │   └── resources/
+│   │   │       └── application.properties
+│   │   └── test/                           # Test files
+│   ├── pom.xml                              # Maven dependencies
+│   └── README.md                            # Backend documentation
+└── README.md                                # This file
 ```
 
 ### 📁 **Key Directories**:
