@@ -158,7 +158,8 @@ rideshare-backend/
 │   │   │       │   └── JwtAuthenticationFilter.java
 │   │   │       ├── controller/          # REST controllers
 │   │   │       │   ├── AuthController.java
-│   │   │       │   └── RideController.java
+│   │   │       │   ├── RideController.java
+│   │   │       │   └── AnalyticsController.java
 │   │   │       ├── dto/                 # Data Transfer Objects
 │   │   │       │   ├── AuthResponse.java
 │   │   │       │   ├── CreateRideRequest.java
@@ -177,7 +178,8 @@ rideshare-backend/
 │   │   │       │   └── UserRepository.java
 │   │   │       ├── service/           # Business logic
 │   │   │       │   ├── AuthService.java
-│   │   │       │   └── RideService.java
+│   │   │       │   ├── RideService.java
+│   │   │       │   └── AnalyticsService.java
 │   │   │       ├── util/              # Utilities
 │   │   │       │   └── JwtUtil.java
 │   │   │       └── RideshareApplication.java
@@ -190,12 +192,12 @@ rideshare-backend/
 ### 📁 **Key Directories**:
 
 - **`config/`**: Security configuration and JWT authentication filter
-- **`controller/`**: REST API endpoints for authentication and ride management
+- **`controller/`**: REST API endpoints for authentication, ride management, and analytics
 - **`dto/`**: Data Transfer Objects with validation annotations
 - **`exception/`**: Custom exceptions and global exception handler
 - **`model/`**: Entity models with MongoDB annotations
 - **`repository/`**: Data access layer with custom queries
-- **`service/`**: Business logic layer
+- **`service/`**: Business logic layer (auth, ride lifecycle, analytics)
 - **`util/`**: Utility classes for JWT operations
 
 ---
@@ -577,6 +579,34 @@ USER (ROLE_USER)       DRIVER (ROLE_DRIVER)
     │ status     → REQUESTED/ACCEPT  │
     └────────────────────────────────┘
 ```
+
+---
+
+### 🔎 **Advanced Ride Search & Filters**
+
+These endpoints provide richer querying over rides data (search, filters, sorting, pagination):
+
+- `GET /api/v1/rides/search?text=kor` – Search by pickup or drop location (case-insensitive)
+- `GET /api/v1/rides/filter-distance?min=2&max=10` – Filter rides by `distanceKm` range
+- `GET /api/v1/rides/filter-date-range?start=2025-01-01&end=2025-01-31` – Filter by `createdDate` range
+- `GET /api/v1/rides/sort?order=asc|desc` – Sort rides by `fareAmount`
+- `GET /api/v1/rides/user/{userId}` – All rides for a specific user
+- `GET /api/v1/rides/user/{userId}/status/{status}` – Rides for a user filtered by status
+- `GET /api/v1/driver/{driverId}/active-rides` – Active rides (status `ACCEPTED`) for a driver
+- `GET /api/v1/rides/filter-status?status=COMPLETED&search=kor` – Combine status filter with keyword search
+- `GET /api/v1/rides/advanced-search?search=kor&status=REQUESTED&sort=fareAmount&order=asc&page=0&size=10` – Advanced search with multiple criteria and pagination
+
+---
+
+### 📊 **Analytics Endpoints**
+
+Aggregation-based analytics over rides data (MongoDB aggregations):
+
+- `GET /api/analytics/driver/{driver}/earnings` – Total earnings for a driver
+- `GET /api/v1/analytics/rides-per-day` – Rides count grouped by `createdDate`
+- `GET /api/v1/analytics/driver/{driverId}/summary` – Driver summary (rides, completed/cancelled count, avg distance, total fare)
+- `GET /api/v1/analytics/user/{userId}/spending` – Total amount spent and completed rides for a user
+- `GET /api/v1/analytics/status-summary` – Ride counts grouped by `status`
 
 ---
 
